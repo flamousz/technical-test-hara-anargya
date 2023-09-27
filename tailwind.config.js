@@ -4,7 +4,14 @@ module.exports = {
   theme: {
     extend: {
       brightness: {},
-      colors: {},
+      colors: {
+        'sidebar-color': '#152544',
+        'sidebar-hover': '#E3F2FD',
+        'content-bg': '#f7f8fa',
+        'downside-bg-card': '#F9FAFC',
+        'p-card-color': '#727272',
+        'p-card-green': '#4CBF93'
+      },
     },
   },
   plugins: [],
