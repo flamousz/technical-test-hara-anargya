@@ -5,8 +5,11 @@ const props = defineProps({
 	status: String,
 	firstNum: Number,
 	secondNum: Number,
+	showdialog: Boolean
 });
-</script>
+
+
+</script> 
 
 <template>
 	<main class="flex flex-col shadow-lg bg-white rounded-xl w-full">
