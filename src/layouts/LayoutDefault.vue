@@ -54,7 +54,6 @@ const handleShowDialog = (input) => {
 	detailUser.value.state = input.state;
 	detailUser.value.street = input.street;
 	detailUser.value.gender = input.gender;
-
 };
 </script>
 
@@ -62,10 +61,10 @@ const handleShowDialog = (input) => {
 	<Transition name="opacity" v-show="showDialog">
 		<div
 			@click="handleShowDialog"
-			class="bg-slate-500 h-full w-screen z-30 absolute opacity-90 grid place-content-center"
+			class="bg-slate-500 h-full w-screen z-30 fixed opacity-90 grid place-content-center"
 		>
 			<div class="bg-white p-6 rounded-xl flex flex-col">
-				<div  class="flex flex-row items-center gap-6">
+				<div class="flex flex-row items-center gap-6">
 					<img
 						:src="detailUser.profile_picture"
 						width="100"
@@ -80,24 +79,22 @@ const handleShowDialog = (input) => {
 						<p>{{ detailUser.phone }}</p>
 					</div>
 				</div>
-				
-		
 			</div>
 		</div>
 	</Transition>
-	<div class="flex flex-row">
+	<div class="flex flex-row justify-end">
 		<Sidebar
 			:showSidebar="sidebarState"
 			@toggleSidebar="sidebarFunction.toggleSidebar"
 			@sidebarStateFalse="sidebarFunction.sidebarStateFalse"
 			@sidebarStateTrue="sidebarFunction.sidebarStateTrue"
 		/>
-		<div class="w-full">
+		<div class="w-auto flex flex-col relative">
 			<Navbar
 				@toggleSidebar="sidebarFunction.toggleSidebar"
 				:showSidebar="sidebarState"
 			/>
-			<main class="p-10 bg-content-bg overflow-hidden">
+			<main class="p-10 bg-content-bg z-0 w-full md:w-[85vw] md:max-h-[100vh] overflow-auto">
 				<slot
 					:showdialog="showDialog"
 					:handleShowDialog="handleShowDialog"

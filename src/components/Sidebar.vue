@@ -49,7 +49,7 @@ onUnmounted(() => {
 
 <template>
 	<aside
-		class="bg-white z-10 drop-shadow-xl text-sidebar-color min-h-[100vh] w-3/4 md:w-[281px] md:block fixed md:static left-0 top-0 transition-transform duration-300 transform"
+		class="bg-white z-20 drop-shadow-xl text-sidebar-color min-h-[100vh] max-h-[100vh] w-3/4 md:w-[15vw] md:block fixed left-0 top-0 transition-transform duration-300 transform"
 		:class="{
 			'translate-x-0 ': props.showSidebar,
 			'-translate-x-full ': !props.showSidebar,

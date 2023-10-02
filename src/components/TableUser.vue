@@ -1,7 +1,26 @@
 <script setup>
+import { ref } from "vue";
 import ButtonWhite from "./ButtonWhite.vue";
 
 const props = defineProps(["userData", "handleShowDialog"]);
+const selectedUser = ref([]);
+
+const isSelect = (id) => {
+
+	return selectedUser.value.includes(id);
+};
+
+const handleIsSelect = (id) => {
+	if (selectedUser.value.includes(id)) {
+		const index = selectedUser.value.indexOf(id);
+
+		if (index !== -1) {
+			selectedUser.value.splice(index, 1);
+		}
+	} else {
+		selectedUser.value.push(id);
+	}
+};
 
 const dateFormater = (date) => {
 	let datee = new Date(date);
@@ -15,7 +34,7 @@ const dateFormater = (date) => {
 
 <template>
 	<table class="w-full">
-		<thead class="bg-gray-50 shadow-inner w-full">
+		<thead class="bg-gray-50 shadow-inner w-full sticky top-6">
 			<tr class="w-full">
 				<th
 					class="px-7 py-3 w-1 text-sm font-semibold tracking-wide text-left"
@@ -54,7 +73,10 @@ const dateFormater = (date) => {
 			<tr
 				v-for="(user, index) in props.userData"
 				:key="index"
-				class="bg-white shadow-inner"
+				class="shadow-inner"
+				:class="{
+					'bg-blue-400 ': isSelect(user.id),
+				}"
 			>
 				<td class="px-7 py-3 text-sm">
 					{{ user?.id }}
@@ -88,12 +110,10 @@ const dateFormater = (date) => {
 					{{ user?.country }}
 				</td>
 				<td class="px-3 py-1 mb-3 text-sm whitespace-nowrap flex gap-2">
-					<ButtonWhite :name="'Select'" />
+					<ButtonWhite :name="'Select'" @click="handleIsSelect(user.id)" />
 					<ButtonWhite
 						:name="'View Detail'"
-						@click="
-							handleShowDialog(user)
-						"
+						@click="handleShowDialog(user)"
 					/>
 				</td>
 			</tr>
